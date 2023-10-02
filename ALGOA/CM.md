@@ -105,6 +105,8 @@ Tous les valeurs des compteurs sont initiallement 0.
 
 ![image2](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.7g5tkoezfjw0.webp)
 
+![image](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20231002/image.5gjjhvxw6tk0.webp)
+
 La Complexité d’une machine de Turing:
 
 1. Complexité temporelle : nombre d'instructions réalisées avant arrêt ;
@@ -137,7 +139,7 @@ SAT属于NP-compete问题
 
 ![image5](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2bxkxq77olj4.webp)
 
-
+$ X = \sum_{2}^{n-1} X_i $
 ## Algorithmes Probalistes
 
 Ce qui utilise une source de hasard. Plus précisément le déroulement de l’algorithme fait appel à des données tirées au hasard.
@@ -206,6 +208,42 @@ Relaxation = supprimer des contraintes
 
 ## Enumération exhaustive
 
+On considère une relaxation P′ du problème P ;
+On énumère ces solutions jusqu’à trouver une solution de P ;
+
+![image7](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230913/image.3nrtcv1ix2s0.webp)
+
+```python
+# T 是一个布尔值列表，用于跟踪数字是否已经被使用。
+# T 的目的是记录从 1 到 n 的数字哪些已经在构建拉丁方阵的过
+# 程中被使用了，以确保每个数字只被使用一次。
+def carre(C, T, k, n):   # C是存放矩阵数值， k是判定到哪一步了，是否在维度内， n是矩阵维度n*n
+    if k == n * n:       # 判定是否填完所有空格
+        return C
+
+    for i in range(1, n^2):
+        if not T[i]:
+            T[i] = True
+            C[k // n][k % n] = i    # k//n表示row，k%n是colomn
+            result = carre(C, T, k + 1, n)
+            if result:
+                return result
+            T[i] = False
+
+    return None  # 如果没有找到解，则返回 None
+
+n = 4  # 您可以将 'n' 更改为所需的拉丁方阵大小。
+C = [[0] * n for _ in range(n)]  # 使用零初始化拉丁方阵网格。
+T = [False] * (n^2)  # 初始化用于跟踪已使用数字的列表。
+
+latin_square = carre(C, T, 0, n)
+if latin_square:
+    for row in latin_square:
+        print(row)
+else:
+    print("未找到给定 'n' 的拉丁方阵。")
+
+```
 
 ## Backtracking
 
