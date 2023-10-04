@@ -4,7 +4,7 @@
 
 Invariants de boucles (Loop Invariants) :
 
-Les invariants de boucle sont **des assertions logiques** qui sont vraies **avant et après chaque itération** d'une boucle dans un programme. Ils servent à <mark>garantir que le comportement de la boucle est correct</mark> et qu'elle **termine correctement**. Les invariants de boucle sont généralement prouvés mathématiquement pour chaque boucle d'un programme.
+Les invariants de boucle sont **des assertions logiques** qui sont vraies **avant et après chaque itération** d'une boucle dans un programme. Ils servent à `<mark>`garantir que le comportement de la boucle est correct`</mark>` et qu'elle **termine correctement**. Les invariants de boucle sont généralement prouvés mathématiquement pour chaque boucle d'un programme.
 
 initial: 循环开始前该变量为真
 itération：循环过程不断迭代，变量值更改，但是性质保持不变
@@ -36,7 +36,8 @@ def insert (x, A):
         j = j − 1
     A[j+1] = key
 ```
-##  indécidable
+
+## indécidable
 
 ### PCP问题：不可判定(indécidable)
 
@@ -56,19 +57,17 @@ void modified_halts(char *f_code) {
 
 ```
 
-其中f_code是我们要进行测试的函数f的ASCII源代码, 我们可以认为对f_code进行编译得到了函数f. 
+其中f_code是我们要进行测试的函数f的ASCII源代码, 我们可以认为对f_code进行编译得到了函数f.
 
 当f对t停机时, `halts(f_code, t)`返回true; 当f对t不停机, `halts(f_code, t)`返回false. 反过来我们可以说，`halts(f_code, t)`返回true，f对t停机;  `halts(f_code, t)`返回false，f对t不停机。
 
+假设 `modified_halts`这个函数的ASCII源代码是 `modified_halts_code``, 如果我们把`modified_halts_code `作为`modified_halts`的输入会是什么情况?
 
-假设`modified_halts`这个函数的ASCII源代码是`modified_halts_code``, 如果我们把`modified_halts_code`作为`modified_halts`的输入会是什么情况?
+如果 `modified_halts`对 `modified_halts_code`停机, 说明 `halts(modified_halts_code, modified_halts_code)`返回false(针对 `modified_halts`函数而言), 然而 `halts(f_code, f_code)`为false说明 `modified_halts`对 `modified_halts_code`不停机;
 
-如果`modified_halts`对`modified_halts_code`停机, 说明`halts(modified_halts_code, modified_halts_code)`返回false(针对`modified_halts`函数而言), 然而`halts(f_code, f_code)`为false说明`modified_halts`对`modified_halts_code`不停机;
+如果 `modified_halts`对 `modified_halts_code`不停机, 说明 `halts(modified_halts_code, modified_halts_code)`返回true, 然而 `halts(f_code, f_code)`为true说明 `modified_halts`对 `modified_halts_code`停机.
 
-如果`modified_halts`对`modified_halts_code`不停机, 说明`halts(modified_halts_code, modified_halts_code)`返回true, 然而`halts(f_code, f_code)`为true说明`modified_halts`对`modified_halts_code`停机.
-
-综合以上两种情况, "`modified_halts`对`modified_halts_code`停机"当且仅当"`modified_halts`对`modified_halts_code`不停机", 这是一个矛盾, 说明不存在这样一个halts函数可用于判断任意函数的可停机性.
-
+综合以上两种情况, "`modified_halts`对 `modified_halts_code`停机"当且仅当"`modified_halts`对 `modified_halts_code`不停机", 这是一个矛盾, 说明不存在这样一个halts函数可用于判断任意函数的可停机性.
 
 Le Théorème de Rice dit (informellement) que toute propriété non-triviale(非平凡) sur les programmes est indécidable："任何非平凡（non-trivial）的关于程序的性质都是不可判定的（undecidable）。"
 
@@ -83,6 +82,7 @@ Le Théorème de Rice dit (informellement) que toute propriété non-triviale(�
 Par exemple, le 10e problème de Hilbert: "Décider si une éequation diophantienne (quelconque) a une solution";  Problème de correspondance de Post (PCP)
 
 ## Complexité
+
 ### La machine de Turing
 
 Une machine déterministe à deux compteurs (M2C):
@@ -96,9 +96,7 @@ Tous les valeurs des compteurs sont initiallement 0.
 • une tête de lecture cur ∈ Z désigne la case courante M[cur] ∈ A de la m´emoire ;
 • M contient des données d'éntrée : un mot sur A \ {□} commençant à la case 0.
 
-
-• un ´etat correspond `a une instruction sp´eciale accept qui arrˆete la machine et r´epond ≪ oui ≫ ;
-• un ´etat correspond `a une instruction sp´eciale reject qui arrˆete la machine et r´epond ≪ non ≫ ;
+• un ´etat correspond `a une instruction sp´eciale accept qui arrˆete la machine et r´epond ≪ oui ≫ ; • un ´etat correspond `a une instruction sp´eciale reject qui arrˆete la machine et r´epond ≪ non ≫ ;
 • la machine peut bloquer (deadlock) si la case courante ne correspond pas `a l’instruction courante.
 
 ![image1](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.1gklcxdewskg.webp)
@@ -111,7 +109,7 @@ La Complexité d’une machine de Turing:
 
 1. Complexité temporelle : nombre d'instructions réalisées avant arrêt ;
 2. Complexité spatiale : nombre maximal de cases non vides simultanément(同时地).
-x
+   x
 
 #### Quelques classes de complexité des problèmes de décision
 
@@ -125,10 +123,8 @@ EXPSPACE：可以在指数空间内解决的问题。这指的是问题的解决
 
 ![image3](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.5et0lxcag3g0.webp)
 
-
-
-
 ### problème de NP, SAT, ILP
+
 SAT是指给定一个逻辑表达式，我们可以让其值为true。合取范式：由交连接的子句。
 ![image4](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.96ycn7pvopc.webp)
 
@@ -140,6 +136,7 @@ SAT属于NP-compete问题
 ![image5](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2bxkxq77olj4.webp)
 
 $ X = \sum_{2}^{n-1} X_i $
+
 ## Algorithmes Probalistes
 
 Ce qui utilise une source de hasard. Plus précisément le déroulement de l’algorithme fait appel à des données tirées au hasard.
@@ -149,6 +146,7 @@ Un algorithme est dit probabiliste si son comportement dépend à la fois des do
 Par exemple, Monte Carlo, Las Vegas et Atlantic City
 
 * Monte Carlo
+
 ```python
 import random
 
@@ -171,7 +169,8 @@ print(f"Estimated Pi: {estimated_pi}")
 ```
 
 * Las Vegas
-Donne toujours un résultat exact, mais le temps de calcul est petit avec une très forte probabilité.
+  Donne toujours un résultat exact, mais le temps de calcul est petit avec une très forte probabilité.
+
 ```python
 # 随机排序一个列表
 import random
@@ -192,15 +191,15 @@ print("Shuffled List:", shuffled_list)
 
 Donne une réponse avec une très forte probabilité sur l'exactitude de la réponse pour un temps de calcul faible en moyenne probabiliste.
 
-
 #### Classes de complexité des algorithmes probabilistes
+
 ![image6](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2foo9r6ywsu8.webp)
 
 # CM 2 Conception d'algorithme
 
 Définition (Relaxation):
 
-P'est <mark>une relaxation</mark> de P si toute solution de P est une solution de P'. On note P ⇒ P'
+P'est `<mark>`une relaxation`</mark>` de P si toute solution de P est une solution de P'. On note P ⇒ P'
 
 Relaxation = supprimer des contraintes
 
@@ -253,8 +252,40 @@ else:
 
 ## Algorithmes gloutons
 
-
 ## Transformations de problèmes
 
+## Structure de Données
 
+```
+x = 2;
+&x = adresse;
+p -> x;
+p = adresse;
+*p est une variable dont l'adresse est dans p
+```
 
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.2gmua84vzwbo.webp)
+
+上述描述提到了关于计算均摊成本的一种方法，使用了一个称为 "函数势"（potential function）的概念。下面我将详细解释这个方法：
+
+函数势（Potential Function）：这是一个函数 ϕ，它接受系统状态的配置向量⃗v作为输入，并返回一个实数值。它用来表示系统状态的某种度量或 "势"，可以视为一种潜在的能量。这个函数的选择是关键的，因为它决定了如何为每个操作分配均摊成本。
+
+均摊成本（Amortized Cost）：对于一系列的操作（例如，i1, i2, ..., in），每个操作都有一个实际成本（ck，例如，执行时间），以及一个与函数势相关的潜在成本（ϕ(⃗vk) - ϕ(⃗vk-1)）。
+
+Potentiel Function的变化：对于每个操作ik，它的潜在成本pk是实际成本ck和函数势ϕ(⃗vk)与ϕ(⃗vk-1)之差的和。这意味着我们在执行操作时，不仅要考虑实际成本，还要考虑函数势的变化。
+
+均摊成本与总成本关系：均摊成本是一系列操作的平均成本。通过选择适当的函数势，我们可以确保均摊成本的总和不会超过实际成本的总和。具体地，如果 ϕ(⃗vn) ≥ ϕ(⃗v0)，则可以保证：
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.988flcnxf1w.webp)
+
+均摊成本总和不超过实际成本总和
+
+这意味着我们可以为某些操作付出更高的成本，但总体上，均摊成本不会超过实际成本。这有助于分析数据结构和算法的性能，尤其在涉及动态数组或队列等数据结构时，均摊分析是一种有用的工具。
+
+需要注意的是，选择适当的函数势对于正确的均摊分析至关重要，因为它决定了如何分配潜在成本。不同的函数势可以导致不同的分析结果，因此选择合适的函数势需要一定的洞察力和分析技巧。
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.eeq3p8fnmi0.webp)
+
+### Liste Chainée
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.546oiuka5w80.webp)
