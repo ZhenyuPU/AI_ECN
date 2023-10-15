@@ -4,8 +4,6 @@
 
 Invariants de boucles (Loop Invariants) :
 
-Les invariants de boucle sont **des assertions logiques** qui sont vraies **avant et après chaque itération** d'une boucle dans un programme. Ils servent à `<mark>`garantir que le comportement de la boucle est correct `</mark>` et qu'elle **termine correctement**. Les invariants de boucle sont généralement prouvés mathématiquement pour chaque boucle d'un programme.
-
 initial: 循环开始前该变量为真
 itération：循环过程不断迭代，变量值更改，但是性质保持不变
 fini：循环终止，该变量能够判断结果是否为真
@@ -81,20 +79,8 @@ Le Théorème de Rice dit (informellement) que toute propriété non-triviale(�
 
 Par exemple, le 10e problème de Hilbert: "Décider si une éequation diophantienne (quelconque) a une solution";  Problème de correspondance de Post (PCP)
 
-## Complexité
 
-排序算法复杂度分析：
-![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.6htb6i96q0k0.webp)
-
-冒泡、选择、直接排序需要两个for循环，每次只关注一个元素，平均时间复杂度为O(n²)）（一遍找元素O(n)，一遍找位置O(n)）
-
-快速、归并、希尔、堆基于二分思想，log以2为底，平均时间复杂度为O(nlogn)（一遍找元素O(n)，一遍找位置O(logn)）
-
-稳定性记忆-“快希选堆”（快牺牲稳定性） 
-
-排序算法的稳定性：排序前后相同元素的相对位置不变，则称排序算法是稳定的；否则排序算法是不稳定的。
-
-### La machine de Turing
+## La machine de Turing
 
 Une machine déterministe à deux compteurs (M2C):
 
@@ -114,15 +100,26 @@ Tous les valeurs des compteurs sont initiallement 0.
 
 ![image2](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.7g5tkoezfjw0.webp)
 
-![image](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20231002/image.5gjjhvxw6tk0.webp)
 
 La Complexité d’une machine de Turing:
 
 1. Complexité temporelle : nombre d'instructions réalisées avant arrêt ;
 2. Complexité spatiale : nombre maximal de cases non vides simultanément(同时地).
-   x
 
-#### Quelques classes de complexité des problèmes de décision
+## Complexité
+
+排序算法复杂度分析：
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.6htb6i96q0k0.webp)
+
+冒泡、选择、直接排序需要两个for循环，每次只关注一个元素，平均时间复杂度为O(n²)）（一遍找元素O(n)，一遍找位置O(n)）
+
+快速、归并、希尔、堆基于二分思想，log以2为底，平均时间复杂度为O(nlogn)（一遍找元素O(n)，一遍找位置O(logn)）
+
+稳定性记忆-“快希选堆”（快牺牲稳定性） 
+
+排序算法的稳定性：排序前后相同元素的相对位置不变，则称排序算法是稳定的；否则排序算法是不稳定的。
+
+### Quelques classes de complexité des problèmes de décision
 
 PTIME（P）：可以在多项式时间内解决的问题。这意味着问题的解决方案可以在输入规模n的多项式时间内找到，通常表示为O(n^k)。例如，线性规划中判断是否存在一个解就属于P类问题。
 
@@ -147,6 +144,16 @@ SAT属于NP-compete问题
 ![image5](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2bxkxq77olj4.webp)
 
 $ X = \sum_{2}^{n-1} X_i $
+
+
+### La Complexité de Amorti
+
+
+#### Classes de complexité des algorithmes probabilistes
+
+![image6](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2foo9r6ywsu8.webp)
+
+
 
 ## Algorithmes Probalistes
 
@@ -202,9 +209,6 @@ print("Shuffled List:", shuffled_list)
 
 Donne une réponse avec une très forte probabilité sur l'exactitude de la réponse pour un temps de calcul faible en moyenne probabiliste.
 
-#### Classes de complexité des algorithmes probabilistes
-
-![image6](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2foo9r6ywsu8.webp)
 
 ## Structure de Données
 
