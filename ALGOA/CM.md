@@ -1,4 +1,4 @@
-# CM1
+# ALGOA
 
 ## Invariant de boucle:
 
@@ -212,6 +212,7 @@ Donne une réponse avec une très forte probabilité sur l'exactitude de la rép
 
 ## Structure de Données
 
+### 存储
 大端序存储方式（Big-Endian）是一种将多字节数据的最高有效字节（MSB）存储在内存地址最低的存储方式，也就是字节序的高位字节在前，低位字节在后。这与我们的阅读习惯相似，比如一个十进制数1234，我们从左到右阅读，高位在前，低位在后。
 
 例如，一个32位的整数0x12345678，在大端序存储方式下，会被存储在内存中如下：
@@ -231,25 +232,7 @@ p = adresse;
 
 ![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.2gmua84vzwbo.webp)
 
-上述描述提到了关于计算均摊成本的一种方法，使用了一个称为 "函数势"（potential function）的概念。下面我将详细解释这个方法：
 
-函数势（Potential Function）：这是一个函数 ϕ，它接受系统状态的配置向量⃗v作为输入，并返回一个实数值。它用来表示系统状态的某种度量或 "势"，可以视为一种潜在的能量。这个函数的选择是关键的，因为它决定了如何为每个操作分配均摊成本。
-
-均摊成本（Amortized Cost）：对于一系列的操作（例如，i1, i2, ..., in），每个操作都有一个实际成本（ck，例如，执行时间），以及一个与函数势相关的潜在成本（ϕ(⃗vk) - ϕ(⃗vk-1)）。
-
-Potentiel Function的变化：对于每个操作ik，它的潜在成本pk是实际成本ck和函数势ϕ(⃗vk)与ϕ(⃗vk-1)之差的和。这意味着我们在执行操作时，不仅要考虑实际成本，还要考虑函数势的变化。
-
-均摊成本与总成本关系：均摊成本是一系列操作的平均成本。通过选择适当的函数势，我们可以确保均摊成本的总和不会超过实际成本的总和。具体地，如果 ϕ(⃗vn) ≥ ϕ(⃗v0)，则可以保证：
-
-![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.988flcnxf1w.webp)
-
-均摊成本总和不超过实际成本总和
-
-这意味着我们可以为某些操作付出更高的成本，但总体上，均摊成本不会超过实际成本。这有助于分析数据结构和算法的性能，尤其在涉及动态数组或队列等数据结构时，均摊分析是一种有用的工具。
-
-需要注意的是，选择适当的函数势对于正确的均摊分析至关重要，因为它决定了如何分配潜在成本。不同的函数势可以导致不同的分析结果，因此选择合适的函数势需要一定的洞察力和分析技巧。
-
-![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.eeq3p8fnmi0.webp)
 
 ### Liste Chainée
 
