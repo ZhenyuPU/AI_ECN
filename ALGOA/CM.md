@@ -4,7 +4,7 @@
 
 Invariants de boucles (Loop Invariants) :
 
-Les invariants de boucle sont **des assertions logiques** qui sont vraies **avant et après chaque itération** d'une boucle dans un programme. Ils servent à `<mark>`garantir que le comportement de la boucle est correct`</mark>` et qu'elle **termine correctement**. Les invariants de boucle sont généralement prouvés mathématiquement pour chaque boucle d'un programme.
+Les invariants de boucle sont **des assertions logiques** qui sont vraies **avant et après chaque itération** d'une boucle dans un programme. Ils servent à `<mark>`garantir que le comportement de la boucle est correct `</mark>` et qu'elle **termine correctement**. Les invariants de boucle sont généralement prouvés mathématiquement pour chaque boucle d'un programme.
 
 initial: 循环开始前该变量为真
 itération：循环过程不断迭代，变量值更改，但是性质保持不变
@@ -82,6 +82,17 @@ Le Théorème de Rice dit (informellement) que toute propriété non-triviale(�
 Par exemple, le 10e problème de Hilbert: "Décider si une éequation diophantienne (quelconque) a une solution";  Problème de correspondance de Post (PCP)
 
 ## Complexité
+
+排序算法复杂度分析：
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.6htb6i96q0k0.webp)
+
+冒泡、选择、直接排序需要两个for循环，每次只关注一个元素，平均时间复杂度为O(n²)）（一遍找元素O(n)，一遍找位置O(n)）
+
+快速、归并、希尔、堆基于二分思想，log以2为底，平均时间复杂度为O(nlogn)（一遍找元素O(n)，一遍找位置O(logn)）
+
+稳定性记忆-“快希选堆”（快牺牲稳定性） 
+
+排序算法的稳定性：排序前后相同元素的相对位置不变，则称排序算法是稳定的；否则排序算法是不稳定的。
 
 ### La machine de Turing
 
@@ -195,8 +206,6 @@ Donne une réponse avec une très forte probabilité sur l'exactitude de la rép
 
 ![image6](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2foo9r6ywsu8.webp)
 
-
-
 ## Structure de Données
 
 大端序存储方式（Big-Endian）是一种将多字节数据的最高有效字节（MSB）存储在内存地址最低的存储方式，也就是字节序的高位字节在前，低位字节在后。这与我们的阅读习惯相似，比如一个十进制数1234，我们从左到右阅读，高位在前，低位在后。
@@ -256,6 +265,7 @@ while cur.n is not None:
     cur = cur.n
 cur.n = new_node
 ```
+
 cur 是一个指向链表头的指针，而 self._head 也指向链表头。当你执行 cur = self._head 时，实际上是将 cur 设置为指向与 self._head 相同的节点，即链表的头节点。**地址都是一样的！**
 
 然后，你使用 while 循环遍历链表，==移动 cur 到链表的最后一个节点==，即倒数第二个位置。在循环结束时，cur 指向了链表中最后一个节点，而 self._head 仍然指向链表的头节点。这里是移动指针指向，地址仍然是原链表的各节点地址，而不会产生新的。
@@ -280,7 +290,7 @@ class SimpleList:
         NewNode = Node(value)
         NewNode.n = self._head
         self._head = NewNode
-    
+  
     def append_(self, value):
         new_node = Node(value)
         if self._head is None:
@@ -299,7 +309,7 @@ class SimpleList:
             liste.append(cur.d)
             cur = cur.n
         return liste
-    
+  
     # ajouter au debut ce qui est l'insertion de l’´el´ement x apr`es la cellule point´ee par L
     # consigner un emplacement
     # L est une liste ce qui est head._head non head
@@ -320,7 +330,7 @@ class SimpleList:
             cur = cur.n
         # delete
         cur.n = cur.n.n
-    
+  
     def search(self, item) -> bool:
         cur = self._head
         while cur is not None:
@@ -335,8 +345,8 @@ def print_(L):
         print_(L.n)
 ```
 
-
 ### Listes doublement chainée
+
 ![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231010/image.5r62o7vf6xg0.webp)
 
 ```python
@@ -377,8 +387,6 @@ class Double_List:
 
 这种技巧对于需要频繁访问链表末尾的应用程序非常有用，因为它可以显著提高访问效率。
 
-
-
 ### Files et piles
 
 File: First in First Out(FIFO)
@@ -391,3 +399,148 @@ Opération:
 • supprimer / dépiler (dequeue / pop)
 • prochain élément / dessus de pile (next / top)
 • vide
+
+不理解
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.7gsykwwxc8o0.webp)
+
+### Files de priorité
+
+• Toujours sortir le plus petit élément de la file
+ex. plus courts chemins, arbres couvrants, codage de Huffman, qualité de service, etc.
+
+• On peut trier la file (typiquement) O(n log2 n)) mais il faut recommencer à chaque insertion (O(n)) ;
+
+• Pour faire mieux : passer de la liste/tableau à l’arbre.
+
+#### L'arbre
+
+• La hauteur de l’arbre est la longueur du plus long chemin de la racine à une feuille (ici 4).
+• Un arbre est équilibré en hauteur si les hauteurs de ses sous-arbre diffèrent d’au plus 1 ;
+• Un arbre n-aire équilibré avec m nœuds a une hauteur d’au plus $log_n m$;
+• On construit une structure avec des op´erations en O(hauteur).
+
+#### Tas binaire
+
+Un tas binaire (binary heap) est un arbre binaire tel que :
+
+1. seul le dernier niveau n’est pas rempli
+   donc il est équilibré
+2. dans chaque sous-arbre ==la racine est plus petite que les racines de ses sous-arbres==
+   donc plus petite que tous les ´el´ements de ces sous-arbres
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.1w0mayn4j4g0.webp)
+
+Pour une file de priorités, il nous faut trois opérations :
+
+1. test du vide (trivial)
+2. insertion d’un élément
+3. extraction du minimum
+
+##### Tas binaire : insertion
+
+remonter à sa place.
+
+```python
+
+```
+
+##### Tas binaire : extraction du minimum
+
+1 Le minimum est la racine ;
+2 On le remplace par le dernier ´el´ement de l’arbre
+le plus `a droite dans le niveau le plus profond 3 On fait descendre cet ´el´ement `a sa place le cas ´ech´eant
+on ´echange avec le plus petit successeur
+
+##### Tas implicites
+
+Si on a un acc`es en O(1) au parent et aux successeurs, insertion et extraction sont en O(log2 n) ;
+
+En fait, le tas implicite est ==une liste==. Mais il **enregistre sa valeur de facon tas binaire**.
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.zp62w0n7a40.webp)
+
+Pour un indice i donnée :   
+
+1. indice du nœud parent : $\frac{i-1}{2}$
+2. indice du nœud successeur (fils) gauche : 2i + 1 et droit : 2i + 2
+
+个数上来看是，第j个的沿着方向过去的子节点是第2j个
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.5u0rsrxxhmw0.webp)
+
+
+```python
+def heap_insert(A, x, n):
+  if n == len(A):
+    raise ValueError('heap is full')
+  else:
+    A[n] = x   # n est l'indice
+    n = n + 1   # nouveau n est le longueur
+    heap_fix_up(A, n-1)
+
+# i est l'indice de element
+def heap_fix_up(A, i):
+  p = (i - 1) // 2
+  while p >= 0 and A[p] > A[i]:
+    swap(A[p], A[i])
+    i = p
+    p = (i - 1) // 2
+  
+```
+
+**==Delete==**
+
+```python
+def heap_del(A, x):
+  n = len(A)
+  index = A.index(x)
+  A[index] = A[n-1])
+  heap_fix_down(A, index, n)
+
+def heap_fix_down(A, i, n):
+  p = 2 * i + 1
+  while p <= n:
+    # seulement s'il y a un fils
+    if A[p] and not A[p+1]:
+      if A[i] > A[p]:
+        swap(A[i], A[p])
+      break
+    elif not (A[p] and A[p+1]):
+      break
+    else:
+      if A[i] > A[p] or A[i] > A[p+1]:
+        swap(A[i], min(A[p], A[p+1]))
+        i = p
+        p = 2 * i + 1
+```
+
+#### Tri par tas (heapsort)
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.2ccn9zwiy0sg.webp)
+
+
+==Lemme:==
+Si A est un tas binaire implicite `a n ´el´ements alors les feuilles sont au indices ⌊n/2⌋ . . . (n − 1).
+
+• on construit un tas **pour le maximum** au lieu du minimum
+• chaque maximum extrait est **remis à la place du dernier élément** du tas qui l’a remplacé.
+• **le coût est toujour**s $O(nlog_2n)$, mieux que merge sort qui nécessite un peu de mémoire supplémentaire et quick sort qui est en $O(n^2)$.
+
+```python
+def heatsort(A):
+  for i in range(n // 2 - 1, -1, -1):
+    # remettre la max a la place de debut
+    heat_fix_down_max(A, i, n)
+  
+  for i in range(n-1, -1, -1):
+    swap(A, 0, i)
+    heap_fix_down_max(A, 0, i+1)
+
+```
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231015/image.e9zygq5duig.webp)
+
+### Ensembles et tableaux associatifs
+
+#### Arbres binaires de recherche (ABR)
+
+

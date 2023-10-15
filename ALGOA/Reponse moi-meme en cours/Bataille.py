@@ -23,6 +23,9 @@ def Bataille(L1: list, L2: list):
     elif L1_carte < L2_carte:
         L2.append(L2_carte)
         L2.append(L1_carte)
+    else:
+        L1.append(L1_carte)
+        L2.append(L2_carte)
     
     Bataille(L1, L2)
 
