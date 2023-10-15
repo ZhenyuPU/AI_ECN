@@ -195,66 +195,18 @@ Donne une réponse avec une très forte probabilité sur l'exactitude de la rép
 
 ![image6](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230910/image.2foo9r6ywsu8.webp)
 
-# CM 2 Conception d'algorithme
 
-Définition (Relaxation):
-
-P'est `<mark>`une relaxation`</mark>` de P si toute solution de P est une solution de P'. On note P ⇒ P'
-
-Relaxation = supprimer des contraintes
-
-即P的解决方法是普适的，相对于P'而言。P的限制条件更多,更复杂，我们需要通过简化问题得到简单条件下的解，从而得出P'是他的松弛(Relaxation)
-
-## Enumération exhaustive
-
-On considère une relaxation P′ du problème P ;
-On énumère ces solutions jusqu’à trouver une solution de P ;
-
-![image7](https://cdn.staticaly.com/gh/ZhenyuPU/picx-images-hosting@master/20230913/image.3nrtcv1ix2s0.webp)
-
-```python
-# T 是一个布尔值列表，用于跟踪数字是否已经被使用。
-# T 的目的是记录从 1 到 n 的数字哪些已经在构建拉丁方阵的过
-# 程中被使用了，以确保每个数字只被使用一次。
-def carre(C, T, k, n):   # C是存放矩阵数值， k是判定到哪一步了，是否在维度内， n是矩阵维度n*n
-    if k == n * n:       # 判定是否填完所有空格
-        return C
-
-    for i in range(1, n^2):
-        if not T[i]:
-            T[i] = True
-            C[k // n][k % n] = i    # k//n表示row，k%n是colomn
-            result = carre(C, T, k + 1, n)
-            if result:
-                return result
-            T[i] = False
-
-    return None  # 如果没有找到解，则返回 None
-
-n = 4  # 您可以将 'n' 更改为所需的拉丁方阵大小。
-C = [[0] * n for _ in range(n)]  # 使用零初始化拉丁方阵网格。
-T = [False] * (n^2)  # 初始化用于跟踪已使用数字的列表。
-
-latin_square = carre(C, T, 0, n)
-if latin_square:
-    for row in latin_square:
-        print(row)
-else:
-    print("未找到给定 'n' 的拉丁方阵。")
-
-```
-
-## Backtracking
-
-## Diviser pour régner
-
-## Programmation dynamique
-
-## Algorithmes gloutons
-
-## Transformations de problèmes
 
 ## Structure de Données
+
+大端序存储方式（Big-Endian）是一种将多字节数据的最高有效字节（MSB）存储在内存地址最低的存储方式，也就是字节序的高位字节在前，低位字节在后。这与我们的阅读习惯相似，比如一个十进制数1234，我们从左到右阅读，高位在前，低位在后。
+
+例如，一个32位的整数0x12345678，在大端序存储方式下，会被存储在内存中如下：
+
+内存地址：0x00 0x01 0x02 0x03
+存储内容：0x12 0x34 0x56 0x78
+
+其中，0x12是最高有效字节，被存储在内存地址最低的位置（0x00），而0x78是最低有效字节，被存储在内存地址最高的位置（0x03）。
 
 ```
 x = 2;
@@ -289,3 +241,153 @@ Potentiel Function的变化：对于每个操作ik，它的潜在成本pk是实�
 ### Liste Chainée
 
 ![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.546oiuka5w80.webp)
+
+Chaque cellule C contient la donnée C.d et un pointeur vers la cellule suivante C.n
+
+accès: O(n)
+insertion/suppression: O(n)
+insertion/suppression avec pointeur: O(1)
+
+Le début de la liste est un pointeur vers la première cellule
+
+```python
+cur = self._head
+while cur.n is not None:
+    cur = cur.n
+cur.n = new_node
+```
+cur 是一个指向链表头的指针，而 self._head 也指向链表头。当你执行 cur = self._head 时，实际上是将 cur 设置为指向与 self._head 相同的节点，即链表的头节点。**地址都是一样的！**
+
+然后，你使用 while 循环遍历链表，==移动 cur 到链表的最后一个节点==，即倒数第二个位置。在循环结束时，cur 指向了链表中最后一个节点，而 self._head 仍然指向链表的头节点。这里是移动指针指向，地址仍然是原链表的各节点地址，而不会产生新的。
+
+当你执行 cur.n = new_node 时，你实际上是将链表的最后一个节点的 n 属性（指向下一个节点的指针）设置为新节点 new_node。这会使链表的最后一个节点指向新节点，因此新节点成为了链表的最后一个节点。
+
+但是，self._head 仍然指向链表的头节点，它没有发生变化。所以，self._head 仍然指向链表的头部，而 cur 指向链表的最后一个节点。
+
+在 Python 中，链表通常由头指针（self._head）来引领整个链表的访问，而 cur 只是一个临时指针，用于遍历链表，不会影响头指针的位置。
+
+```python
+class Node:
+   def __init__(self, value):
+        self.d = value
+        self.n = None
+
+class SimpleList:
+    def __init__(self):
+        self._head = None
+    # creer une liste self._head
+    def insert_front(self, value):
+        NewNode = Node(value)
+        NewNode.n = self._head
+        self._head = NewNode
+    
+    def append_(self, value):
+        new_node = Node(value)
+        if self._head is None:
+            self._head = new_node          # pointer vers une nouvelle cellule
+            return
+        cur = self._head
+        while cur.n is not None:
+            cur = cur.n
+        cur.n = new_node
+        return
+
+    def travel(self) -> list:
+        liste = []
+        cur = self._head
+        while cur is not None:
+            liste.append(cur.d)
+            cur = cur.n
+        return liste
+    
+    # ajouter au debut ce qui est l'insertion de l’´el´ement x apr`es la cellule point´ee par L
+    # consigner un emplacement
+    # L est une liste ce qui est head._head non head
+    def insert(self, pos, x):
+        cur = self._head
+        # deplacer jusqu'a pos
+        for _ in range(pos-1):
+            cur = cur.n
+        # créer une nouvelle cellule
+        L_new = Node(x)
+        L_new.n = cur.n
+        cur.n = L_new
+
+    def delete(self, x):
+        cur = self._head
+        # deplacer
+        while cur.n.d != x:
+            cur = cur.n
+        # delete
+        cur.n = cur.n.n
+    
+    def search(self, item) -> bool:
+        cur = self._head
+        while cur is not None:
+            if cur.d == item:
+                return True
+            cur = cur.n
+        return False
+
+def print_(L):
+    if L is not None:
+        print(L.d)
+        print_(L.n)
+```
+
+
+### Listes doublement chainée
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231010/image.5r62o7vf6xg0.webp)
+
+```python
+# Creer une liste doublement chainee
+class Double_List:
+  def __init__(self, item):
+    self.d = item
+    self.prev = None
+    self.n = None
+  
+  def is_empty():
+    return self.d == None or self.n ==None
+  
+  def insert_after(x, L):
+    L_x = Double_List(x)
+    if L.n == None:
+      L.n = L_x.prev
+      L_x.n = None
+      return
+    insert_after(x, L.n)
+  
+  def insert_before(x, L):
+    L_x = Double_List(x)
+    L_x.n = L.n
+    L = L_x
+  
+  def delete_end(fin, L):
+
+```
+
+==**"Accéder à la fin d'une liste simplement chaînée en O(1) : ajouter juste un pointeur"**==
+
+在普通的单链表中，要访问链表的末尾，你需要从链表的头部开始遍历链表，直到达到最后一个节点。这样的操作的时间复杂度是线性的，即O(n)，其中n是链表的长度。
+
+然而，如果你在链表中添加一个额外的指针，指向链表的末尾节点，那么你可以直接通过这个指针访问链表的末尾，而不需要遍历整个链表。这样，你可以在常数时间复杂度内访问链表的末尾，因为你可以直接跳到末尾节点，而不需要遍历。
+
+这个方法的实现非常简单：每当你在链表中添加一个新节点时，同时更新这个指向链表末尾的指针，以保持它指向新的末尾节点。这样，你就可以随时以O(1)的时间复杂度访问链表的末尾。
+
+这种技巧对于需要频繁访问链表末尾的应用程序非常有用，因为它可以显著提高访问效率。
+
+
+
+### Files et piles
+
+File: First in First Out(FIFO)
+
+Pile: Last in First Out(LIFO)
+
+Opération:
+
+• insérer / empiler (enqueue / push)
+• supprimer / dépiler (dequeue / pop)
+• prochain élément / dessus de pile (next / top)
+• vide

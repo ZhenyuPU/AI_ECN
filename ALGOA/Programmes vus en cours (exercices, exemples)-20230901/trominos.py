@@ -17,6 +17,7 @@ def trominos(A, dx, fx, dy, fy, i, j, k):
         ajoute_tromino(A, dx, dy, i, j, k)
 
     else:
+        # milieu
         mx = (dx + fx + 1) // 2
         my = (dy + fy + 1) // 2
 
@@ -26,6 +27,7 @@ def trominos(A, dx, fx, dy, fy, i, j, k):
         if i < mx and j < my:
             # le trou i,j est dans ce carré
             # on doit mettre le trou du tromino en a, b
+            
             ajoute_tromino(A, mx - 1, my - 1, a, b, k)
             # le trou pour le cas récursif est i, j et non a, b 
             a = i 
@@ -63,6 +65,7 @@ n=4
 N=2**n
 x = randint(0,N-1)
 y = randint(0,N-1)
+print(f"Le position de trou est {tuple((x, y))}")
 print(f'Le plateau fait {N}x{N} et le trou est en ({x},{y})')
 A = [[0 for i in range(N)] for j in range(N)] 
 trominos(A, 0, N-1, 0, N-1, x, y, 1)
