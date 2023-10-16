@@ -530,4 +530,188 @@ def heatsort(A):
 
 #### Arbres binaires de recherche (ABR)
 
+Definition:
+
+La racine du fils gauche plus petite que la racine
+
+La racine du fils droite plus grande que la racine
+
+```python
+class BinaryTreeNode:
+  def __init__(self, value=None):
+    self.parent = None
+    self.left = None
+    self.right = None
+    self.value = value
+  
+def abr_search(A, x)：
+  if A == None:
+    return False
+  elif x == A.value:
+    return True
+  elif x < A.value:
+    abr_search(A.left, x)
+  elif x > A.parent:
+    abr_search(A.right, x)
+
+
+def abr_insert(A, x):
+  if A == None:
+    new_node = BinaryTreeNode(x)
+    return new_node
+  else:
+    if x < A.value:
+      abr_insert(A.left, x)
+    elif x > A.value:
+      abr_insert(A.right, x)
+    return A
+
+```
+
+Pour supprimer le noeud N, il existe deux possibilités:
+
+- Si le noeud N à supprimer a zéro ou un successeur, il juste faut remplacer *N par *Y(successeur sole) et supprimer Y.
+- Sinon, il faut remplacer par Y plus grand que lui ou le plus grand le plus petit
+
+```python
+def abr_del(A, x):
+  if A is None:
+    return A
+
+  if A.valeur == x:
+    if A.left is None:
+      return A.right
+    elif A.right is None:
+      return A.left
+
+    A.value = find_min(A.right).value
+    A.right = abr_del(A.right, A.value)
+  elif x < A.value:
+    abr_del(A.left, x)
+  elif x > A.value:
+    abr_del(A.right, x)
+  return A
+
+
+def find_min(A):
+  if A is None:
+    return A
+  
+  if not A.left:
+    return A
+  else:
+    return find_min(A.left)
+
+#  trouver le parent du nœud r´ealisant le minimum
+def find_parent_min(A):
+  if A is None:
+    return None
+  
+  parent = None
+
+  while A.left:
+    parent = A
+    A = A.left
+  return parent
+```
+
+
+#### Arbre auto-equilibrant
+
+自平衡二叉搜索树，它是一个二叉树，故满足二叉树的性质，并且它能够在插入或删除时自动保持平衡。
+
+根据满足平衡条件的严格程度可以划分种类：
+
+红黑树(Arbres rouges et noirs)，AVL
+
+##### AVL
+
+Un arbre AVL(Adelson-Velsky & Landis):
+
+Pour tout noeud x, les **sous-arbre** enraciné en x est **équilibrant(en haut)**.
+
+它是平衡二叉树，同一个节点的两个子树的高度差不超过1。 并且它的两个子树也是平衡二叉树。
+
+高度为$O(long_2n)$.
+
+##### AVL rotation
+
+Pour équilibrer l'arbre il faut faire des rotations qui préserve l'invariant de l'ABR.
+
+```python
+# initial: (A, x, None, 0)
+def avl_insert(A, x, p, bfu):
+  retrace = (p != None)
+
+  if A is None:
+    new_node = AVL_node()
+    new_node.value = x
+    new_node.b = 0
+  else:
+    if x < A.value:
+      A.left = avl_insert(A.left, x, A, -1)
+    else:
+      A.right = avl_insert(A.right, x, A, 1)
+    
+    B = avl_balance(A)
+    if B.b == 0:
+      retrace = False
+
+  if retrace:
+    p.b = p.b + bfu
+  
+  return B
+
+
+
+def balance(A):
+  R = A
+  if A is not None:
+    if A.b == 2:
+      if A.right.b < 0:
+        A.right = avl_rotate_right(A.right)
+      
+      R = avl_rotate_left(A)
+    
+    elif A.b = -2:
+      if A.left.b > 0:
+        A.left = avl_rotate_left(A.left)
+      
+      R = avl_rotate_right(A)
+    
+  return R
+```
+
+
+On peut aussi d´efinir des opérations efficaces $(O(n_1 log( n_1/n_2+ 1)))$ et parallélisables d’union intersection, diff´erence d'ensemble.
+
+$$recherche: O(log_2 n)\\
+insertion: O(log_2 n)\\
+supression: O(log_2 n) \\$$
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231016/image.2kr85j1y64s0.webp)
+
+Reponse:
+```python
+
+```
+
+
+#### Tables de hachage
+
+Pour **indiquer l'absence** d'un élément: Utiliser une **valeur spéciale**(Comme `None`)
+
+Il équivaut à ==une liste==.
+
+Insertion, suppression et recherche sont en $O(1)$
+
+Chaque élément pointe vers l'indice.
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231016/image.20h467bao71c.webp)
+
+Reponse:
+
+```python
+
+```
 
