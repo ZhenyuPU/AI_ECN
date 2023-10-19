@@ -458,7 +458,7 @@ Pour un indice i donnée :
 
 ```python
 def heap_insert(A, x, n):
-  if n == len(A):
+  if n == len(A) - 1:
     raise ValueError('heap is full')
   else:
     A[n] = x   # n est l'indice
@@ -714,4 +714,73 @@ Reponse:
 ```python
 
 ```
+##### 链地址
 
+哈希表加上链表：
+
+T 表示一个哈希表，这是一个数组，每个元素是一个链表，访问某一个元素所在的位置需要我们用哈希函数获取索引。，这只能找到链表对应头指针的位置。要想找到元素需要在链表中寻炸。
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231017/image.442k90h98pm0.webp)
+
+L'opération de table de hachage
+
+```python
+def h(x, T):
+    # hash(x),x = key
+    return x % len(T)
+
+def ht_search(T, x):
+    return list_search(T[h(x, T)], x)   
+    # h(x): 哈希函数找到x所在的索引i,然后通过list_search()函数找到T[i]这个链表和x所在的地方
+
+def ht_insert(T, x):
+    T[h(x, T)] = list_insert_front(T[h(x, T)], x)
+
+def ht_del(T, x):
+    list_del(T[h(x, T)], x)
+
+def list_search(l, x):
+    if l is None:
+        return False
+
+    if x == l.v:
+        return True
+    return list_search(l.n, x)
+
+def list_insert_front(l, x):
+    new_node = Node(x)
+    if l is None:
+        return new_node
+    new_node.n = l
+    return new_node
+```
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231017/image.2zixk0m99tu0.webp)
+
+$$O(n), O(1), O(n)$$
+
+##### Adresse ouverte
+
+##### La complexité de Hachage  
+
+Pire cas:
+
+complexité moyenne:
+
+
+![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231017/image.29b5kehzjt0k.webp)
+
+
+
+
+## Trier
+### Bubble
+
+
+
+### Selection
+
+### Quick sort
+
+### Merge sort
+
+### Counting sort

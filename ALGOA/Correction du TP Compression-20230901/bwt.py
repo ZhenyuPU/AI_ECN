@@ -8,12 +8,16 @@ from constants import bwt_marker
 def get_element(t, x, text, size):
     return text[(size - t + x) % size]
 
+# A tableau a trier
+# f: get_element
+# r: bwt_marker + 1, 计数排序最大容量，小于ASCL码
+# x: n _____par rapport de n
 def counting_sort(A, r, f, x, text, start, end):
     size = len(text)
     freqs = [0]*r 
 
     for i in range(start, end):
-        c = f(A[i], x, text, size)
+        c = ord(f(A[i], x, text, size))  # ord(caractere) ?
         freqs[c] = freqs[c] + 1
 
     s = start
@@ -24,20 +28,25 @@ def counting_sort(A, r, f, x, text, start, end):
             letters.append(i)
             indices[i]= s
             s = s + c
-
+    print(indices)
     s = start
     for d in letters:
         j = indices[d]
         s = s + freqs[d]
         while j < s:
-            c = f(A[j], x, text, size)
+            c = ord(f(A[j], x, text, size))
             k = indices[c]
-            b = f(A[k], x, text, size)
+            #print(chr(c), k)
+            b = ord(f(A[k], x, text, size))
+            # print(f"b = {chr(b)}, c = {chr(c)},k = {k}")
             if b != c:
                 A[j], A[k] = A[k], A[j]
             else:
                 j = j + 1
+            print(A)
             indices[c] = indices[c] + 1
+    
+    #vprint(A)
 
     # À la fin pour chaque lettre c, la plage [indices[c] - freqs[c], indices[c] - 1]
     # contient les mots pour lesquels la lettre courante était c
@@ -148,3 +157,27 @@ def bwt_decode(text, bs):
     return R
 
 
+
+if __name__ == '__main__':
+    # T = ['exemple', 'rotation', 'bonjour']
+    T = 'efvbhgjkrueiiq'
+    size = len(T)
+    A = list(range(size))
+    r = bwt_marker+1
+    n = 3
+    print(counting_sort(A, r, get_element, x = n, text = T, start = 0, end = size))
+    # print(double_table_tri(T, n=3))
+    # Texte initial
+    # texte_initial = "banana"
+
+    # # Tableau des indices de début de chaque rotation
+    # tableau_trier = [1, 3, 0, 5, 2, 4]
+
+    # # Tri des rotations en fonction du 2ème symbole
+    # n = 2
+    # rotations_triees = custom_sort_rotations(texte_initial, tableau_trier, n)
+
+    # print(rotations_triees)
+
+    #def rotation_text_sort(T):
+    

@@ -73,22 +73,24 @@ def decode(text):
     return m
 
 
-s = "pg5097.txt"
-#s = "mississippi.txt"
-with open(s, "rb") as f:
-    contents = list(f.read())
 
-#print("initial text")
-#print(contents)
-print(f'initial size: {len(contents)}')
+if __name__ == '__main__':
+    s = "/mnt/e/Centrale Nantes/AI/A2/ALGOA/Correction du TP Compression-20230901/pg5097.txt"
+    #s = "mississippi.txt"
+    with open(s, "rb") as f:
+        contents = list(f.read())
+
+    #print("initial text")
+    #print(contents)
+    print(f'initial size: {len(contents)}')
 
 
-m = encode(contents)
-print(f'compressed size: {len(m)}')
-#print(m)
+    m = encode(contents)
+    print(f'compressed size: {len(m)}')
+    #print(m)
 
-with open(s+".bz", "wb") as f:
-    f.write(bytes(m))
+    with open(s+".bz", "wb") as f:
+        f.write(bytes(m))
 
-m = decode(m)
-print(m == contents)
+    m = decode(m)
+    print(m == contents)
