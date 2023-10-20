@@ -17,12 +17,12 @@ Par exemple, iAddr: 199.2.2.3 et EAddr: 1.2.3.4
 
 ### Dynamic NAT
 La translation entre les adresses IP privées et les adresses IP publiques est temporaire et attribuée dynamiquement. 
-Ce n'est que lorsqu'un appareil interne demande une ressource réseau externe que le périphérique NAT attribue une adresse IP publique disponible à l'appareil, puis libère l'adresse une fois la connexion fermée, la rendant ainsi disponible pour une utilisation par d'autres appareils.
+Ce n'est que lorsqu'un appareil interne demande une ressource réseau externe que le routeur NAT attribue IP publique disponible à l'appareil, puis une fois la connexion fermée, le port ainsi disponible pour l'autre appareil.
 ### NAPT
 
 网络地址端口转换，这个是需要考虑端口的，需要进行源地址和目的地址的相互转换，当源地址发送出来时，NAT主机会改写源地址，使其发出的数据能够到达目的地址；同时当外网主机发送数据时，其地址也会被改写使其成功被内网主机接收。
 
-Traduction du port d'adresse réseau, cela nécessite de prendre en compte le port, et l'adresse source et l'adresse de destination doivent être converties l'une en l'autre. Lorsque l'adresse source est envoyée, l'hôte NAT réécrira l'adresse source afin que les données envoyées puissent atteindre le adresse de destination ; en même temps, lorsque l'hôte externe Lorsque l'hôte du réseau envoie des données, son adresse sera également réécrite afin qu'elle puisse être reçue avec succès par l'hôte intranet.
+Traduction du port d'adresse réseau, cela nécessite de prendre en compte le port, et l'adresse source et l'adresse de destination doivent être converties l'une en l'autre. Lorsque l'adresse source est envoyée, l'hôte NAT réécrira l'adresse source afin que les données envoyées puissent atteindre l'adresse de destination ; en même temps, lorsque l'hôte externe Lorsque l'hôte du réseau envoie des données, son adresse sera également réécrite afin qu'elle puisse être reçue avec succès par l'hôte intranet.
 
 ## 根据映射规则分类：
 ### 完全圆锥型：
