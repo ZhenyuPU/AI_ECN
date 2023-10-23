@@ -65,24 +65,26 @@ def print_(L):
         print(L.d)
         print_(L.n)
 
-L = SimpleList()
-L.insert_front(value=1)
-for i in range(10):
-    L.append_(value=i)
-L.insert(pos=5, x=100)
-alist = L.travel()
-print(alist)
-# print_(L._head)
-# print(L.search(111))
-# L.delete(x=7)
-# print(id(cur) == id(L._head))
-# for _ in range(5):
-#     cur = cur.n
-# insert(cur, x=55)
-# cur = L._head
-# L.print_(cur)
-# print(id(cur) == id(L._head))
-# L.print_(L._head)
 
-# L.print_(L._head)
-# print(L._head.d)
+if __name__ == '__main__':
+    L = SimpleList()
+    L.insert_front(value=1)
+    for i in range(10):
+        L.append_(value=i)
+    L.insert(pos=5, x=100)
+    alist = L.travel()
+    print(alist)
+    # print_(L._head)
+    # print(L.search(111))
+    # L.delete(x=7)
+    # print(id(cur) == id(L._head))
+    # for _ in range(5):
+    #     cur = cur.n
+    # insert(cur, x=55)
+    # cur = L._head
+    # L.print_(cur)
+    # print(id(cur) == id(L._head))
+    # L.print_(L._head)
+
+    # L.print_(L._head)
+    # print(L._head.d)

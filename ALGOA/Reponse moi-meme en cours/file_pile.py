@@ -7,7 +7,7 @@ dequeue
 
 is_empty
 '''
-class Pile:
+class File:
     def __init__(self):
         self.contents = []
     
@@ -38,7 +38,7 @@ class Pile:
     def __init__(self):
         self.contents = []
 
-    def push(self, value):
+    def push_(self, value):
         self.contents.append(value)
     
     def pop_(self):

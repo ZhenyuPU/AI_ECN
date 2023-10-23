@@ -1,6 +1,7 @@
 import math
 
 
+# 最短作业优先调度算法：最短作业优先进行
 def sjf(C, n):
     return sorted(list(range(0,n)), key=lambda x: C[x])
 
@@ -15,7 +16,7 @@ def next_srtf(D, t, n):
 
     return m
 
-
+# 最短剩余时间优先调度算法
 def srtf(C, D, t, n):
     if t < math.inf:
         m = math.inf
@@ -42,6 +43,7 @@ def srtf(C, D, t, n):
         return []
 
 
+# ？
 C = [3, 1, 4, 2, 1, 3, 2, 2]
 
 n = 8
