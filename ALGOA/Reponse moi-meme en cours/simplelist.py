@@ -74,6 +74,23 @@ if __name__ == '__main__':
     L.insert(pos=5, x=100)
     alist = L.travel()
     print(alist)
+
+
+    node = Node(2)
+    # node.n.n = Node(5)
+    # node2 = node.n
+    # nodenew = node2.n
+    # nodenewnew = Node(10)
+    # node2.n = nodenewnew
+    # nodenew.n = node.n
+    # print(node.d)
+    # print(nodenew.n.n.d)
+    nodenew = node
+    node.d = None
+    print(nodenew.d)
+
+
+
     # print_(L._head)
     # print(L.search(111))
     # L.delete(x=7)

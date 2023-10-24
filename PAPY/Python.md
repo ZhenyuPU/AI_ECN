@@ -422,6 +422,48 @@ list(enumerate(seasons, start=1))
 # [(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
 ```
 
+### all(iterable)
+
+return True if all of elements in iterable are true.
+
+### any(iterable)
+
+return True if any element in iterable is true. If having one it's true.
+
+
+### map(function, iterable, *iterables)
+function -- 函数
+iterable -- 一个或多个序列
+
+第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。
+
+```python
+>>> def square(x) :         # 计算平方数
+...     return x ** 2
+... 
+>>> map(square, [1,2,3,4,5])    # 计算列表各个元素的平方
+<map object at 0x100d3d550>     # 返回迭代器
+>>> list(map(square, [1,2,3,4,5]))   # 使用 list() 转换为列表
+[1, 4, 9, 16, 25]
+>>> list(map(lambda x: x ** 2, [1, 2, 3, 4, 5]))   # 使用 lambda 匿名函数
+[1, 4, 9, 16, 25]
+>>>
+```
+
+### string.split(separator, maxsplit)
+
+|Parameter|	Description|
+|---------|------------|
+|separator|Specifies the separator to use when splitting the string. By default any whitespace is a separator|
+|maxsplit  |Specifies how many splits to do. Default value is -1, which is "all occurrences"|
+
+```python
+txt = "hello, my name is Peter, I am 26 years old"
+x = txt.split(", ")
+print(x)
+# ['hello', 'my name is Peter', 'I am 26 years old']
+```
+
 ### object.__dict__
 
 它用于存储一个对象的命名空间（namespace），也就是该对象的属性和方法的字典。每个对象都有一个__dict__属性，它允许你访问和操作对象的属性和方法。

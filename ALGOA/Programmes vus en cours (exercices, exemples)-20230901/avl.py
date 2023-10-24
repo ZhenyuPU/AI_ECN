@@ -11,6 +11,8 @@ def tree_height(A):
     else:
         return 1 + max(tree_height(A.g), tree_height(A.d))
 
+
+# inorder
 def abr_print(A):
     if A != None:
         abr_print(A.g)
@@ -51,6 +53,7 @@ def abr_delete(A, x):
                     Y = A.d   # c'est directement A.d qui est le min
                 else: 
                     Y = P.g   # Y est le min
+                    P.g = None
                     Y.d = A.d # Y est plus petit que A.d
                     
                 # Y est le min du filsd
@@ -152,9 +155,24 @@ for x in Z:
     abr_print(A)
     print(f'\nhauteur: {tree_height(A)}')
 
-A = abr_delete(A, 5)
+A = abr_delete(A, 4)
 abr_print(A)
 print(f'\nhauteur: {tree_height(A)}')
+
+
+p = 0
+node1 = node(4, p)
+node1.d = node(8, p)
+node1.g = node(2, p)
+node1.d.g = node(7, p)
+nodemin = node1.d
+Y = nodemin.g
+nodemin.g = None
+
+Y.d = node1.d
+Y.g = node1.g
+print(Y.r)
+
 #A = avl_rotate_left(A)
 #abr_print(A)
 #print(f'\nhauteur: {tree_height(A)}')

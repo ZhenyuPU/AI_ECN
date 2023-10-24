@@ -217,12 +217,11 @@ precondition: assumer au début quelle condition est vraie
 
 postcondition: guarantir à la fin la correction du résultat
 
-```python
 
 def sort (A, n):
   for i = 1 to n − 1:
     insert ( i , A)
-# assumer x dans [1, n-1]
+`# assumer x dans [1, n-1]`
 def insert (x, A):
     key = A[x]
     j = x − 1
@@ -230,7 +229,7 @@ def insert (x, A):
         [j + 1] = A[j]
         j = j − 1
     A[j+1] = key
-```
+
 
 ## indécidable
 
@@ -249,7 +248,6 @@ void modified_halts(char *f_code) {
     return;                     // 立即停止运行
   }
 }
-
 ```
 
 其中f_code是我们要进行测试的函数f的ASCII源代码, 我们可以认为对f_code进行编译得到了函数f.
@@ -360,7 +358,7 @@ Un algorithme est dit probabiliste si son comportement dépend à la fois des do
 
 Par exemple, Monte Carlo, Las Vegas et Atlantic City
 
-* Monte Carlo
+Monte Carlo
 
 ```python
 import random
@@ -383,7 +381,7 @@ print(f"Estimated Pi: {estimated_pi}")
 
 ```
 
-* Las Vegas
+Las Vegas
   Donne toujours un résultat exact, mais le temps de calcul est petit avec une très forte probabilité.
 
 ```python
@@ -409,6 +407,21 @@ Donne une réponse avec une très forte probabilité sur l'exactitude de la rép
 
 ## Structure de Données
 
+当指针A指向某节点B，说明A的地址跟B的地址都一样，但是问题在于如果让B指向新的节点，那么B的地址就改变了，但是A不会发生变化，仍然是原先的地址。
+
+因此，对于某一个node，不管是哪种数据结构，都是不可变量，即索引对象改变了值，自己不会变化。
+
+除非是：
+```python
+node = Node(x)
+node2 = node
+node.d = new_val
+# node2值改变了，因为node地址没变，值变了
+# 如果node地址改变了，那么node2不变，因为node2地址只会是初始化时那个
+```
+
+
+
 ### 存储
 大端序存储方式（Big-Endian）是一种将多字节数据的最高有效字节（MSB）存储在内存地址最低的存储方式，也就是字节序的高位字节在前，低位字节在后。这与我们的阅读习惯相似，比如一个十进制数1234，我们从左到右阅读，高位在前，低位在后。
 
@@ -419,13 +432,6 @@ Donne une réponse avec une très forte probabilité sur l'exactitude de la rép
 
 其中，0x12是最高有效字节，被存储在内存地址最低的位置（0x00），而0x78是最低有效字节，被存储在内存地址最高的位置（0x03）。
 
-```
-x = 2;
-&x = adresse;
-p -> x;
-p = adresse;
-*p est une variable dont l'adresse est dans p
-```
 
 ![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231004/image.2gmua84vzwbo.webp)
 
@@ -494,7 +500,7 @@ class SimpleList:
             cur = cur.n
         return liste
   
-    # ajouter au debut ce qui est l'insertion de l’´el´ement x apr`es la cellule point´ee par L
+    # ajouter au debut ce qui est l'insertion de l’element x apres la cellule pointee par L
     # consigner un emplacement
     # L est une liste ce qui est head._head non head
     def insert(self, pos, x):
@@ -527,8 +533,10 @@ def print_(L):
     if L is not None:
         print(L.d)
         print_(L.n)
-```
 
+
+
+```
 ### Listes doublement chainée
 
 ![image](https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231010/image.5r62o7vf6xg0.webp)
@@ -605,6 +613,9 @@ ex. plus courts chemins, arbres couvrants, codage de Huffman, qualité de servic
 
 #### Tas binaire
 
+重点问题是分清楚是max heap还是min heap，反正就是要注意性质$n // 2 - 1$和$2*i + 1, 2 * i + 2$的运用。插入删除都涉及往前回溯还是往后回溯，堆排序涉及到往后回溯。
+
+
 Un tas binaire (binary heap) est un arbre binaire tel que :
 
 1. seul le dernier niveau n’est pas rempli
@@ -645,8 +656,9 @@ En fait, le tas implicite est ==une liste==. Mais il **enregistre sa valeur de f
 
 Pour un indice i donnée :   
 
-1. indice du nœud parent : $\frac{i-1}{2}$
-2. indice du nœud successeur (fils) gauche : 2i + 1 et droit : 2i + 2
+1. indice du nœud parent : $i = n // 2 - 1$(n是长度)，这个也是第一个叶子节点的上一个，叶子节点为$i = n // 2$
+
+2. indice du nœud successeur (fils) gauche : $2i + 1$ et droit : $2i + 2$
 
 个数上来看是，第j个的沿着方向过去的子节点是第2j个
 
@@ -672,7 +684,7 @@ def heap_fix_up(A, i):
   
 ```
 
-**==Delete==**
+**<mark>Delete</mark>**
 
 ```python
 def heap_del(A, x):
@@ -706,15 +718,19 @@ def heap_fix_down(A, i, n):
 ==Lemme:==
 Si A est un tas binaire implicite `a n ´el´ements alors les feuilles sont au indices ⌊n/2⌋ . . . (n − 1).
 
+<mark>！所以⌊n/2⌋是叶子，**⌊n/2⌋ - 1** 是最后一个叶子上面的父节点的索引。</mark>
+
 • on construit un tas **pour le maximum** au lieu du minimum
+
 • chaque maximum extrait est **remis à la place du dernier élément** du tas qui l’a remplacé.
+
 • **le coût est toujour**s $O(nlog_2n)$, mieux que merge sort qui nécessite un peu de mémoire supplémentaire et quick sort qui est en $O(n^2)$.
 
 ```python
-def heatsort(A):
+def heapsort(A):
   for i in range(n // 2 - 1, -1, -1):
     # remettre la max a la place de debut
-    heat_fix_down_max(A, i, n)
+    heap_fix_down_max(A, i, n)
   
   for i in range(n-1, -1, -1):
     swap(A, 0, i)
@@ -726,6 +742,13 @@ def heatsort(A):
 ### Ensembles et tableaux associatifs
 
 #### Arbres binaires de recherche (ABR)
+
+二叉搜索树先注意定义，左边的永远小于根节点，右边的永远大于根节点。
+
+并且区分prefix, inorder, postfix，这三种遍历方式。
+
+递归时要注意终止条件，和哪些时候到左边或者右边，分清楚多种情况，什么时候该添加或者删除
+
 
 Definition:
 
@@ -820,6 +843,8 @@ def find_parent_min(A):
 根据满足平衡条件的严格程度可以划分种类：
 
 红黑树(Arbres rouges et noirs)，AVL
+
+<mark>**平衡二叉树先：**</mark>
 
 ##### AVL
 
