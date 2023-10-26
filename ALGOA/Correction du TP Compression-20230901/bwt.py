@@ -160,7 +160,7 @@ def bwt_decode(text, bs):
 
 if __name__ == '__main__':
     # T = ['exemple', 'rotation', 'bonjour']
-    T = 'efvbhgjkrueiiq'
+    T = 'exemple'
     size = len(T)
     A = list(range(size))
     r = bwt_marker+1

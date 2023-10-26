@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: TP-final
+Version: 1.0
+Summary: c'est TP final
+Author: ZhenyuPU
+Author-email: zhenyu.pu@eleves.ec-nantes.fr
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: "text/markdown"
+Requires-Dist: pytest

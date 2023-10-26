@@ -81,7 +81,7 @@ class Huffman:
         for i in range(0,len(diffs),2):
             c = diffs[i]
             s = diffs[i + 1]
-            code = code << s
+            code = code << s 
             size = size + s
             self.codes[c] = binary_list(code, size)
             code = code + 1 

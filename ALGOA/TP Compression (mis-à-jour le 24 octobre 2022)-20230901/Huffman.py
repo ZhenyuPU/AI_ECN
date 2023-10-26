@@ -1,5 +1,9 @@
 from Contents import contents
 
+# constants
+modulo = chr(256)
+huffman_maker = 257
+
 class HuffmanTreeNode:
     def __init__(self, symbol = None, num = None):
         # un noeude
@@ -111,6 +115,114 @@ class Huffman:
                 decoded_text += str(current_node.symbol)
                 current_node = self.tree
         return decoded_text
+    """
+    1. 第一个符号的编码方式是依照符号的编码长度给予相同长度的'0'值
+    2. 对接下来的符号的编码+1，保证接下来的编码大小都大于之前
+    3. 如果编码较长，比特左移一位并补0
+    """
+    def heapsort(self, A):
+        n = len(A)
+        for i in range(n // 2, -1, -1):
+            self.heap_fix_down_max(A, i, n)
+
+    def heap_fix_down_max(self, A, i, n):
+        largest = i
+        left = 2* i + 1
+        right = 2*i + 2
+        if left < n and A[left] > A[largest]:
+            largest = left
+        if right < n and A[right] > A[largest]:
+            largest = right
+        if left < n and right < n and A[left] == A[right] and A[left] > A[largest]:
+            if A.keys(A[left]) < A.keys(A[right]):
+                largest = right
+            else:
+                largest = left
+    
+    def canonical_diffs(self):
+        # trier le codemap
+        # codemap 最上面的最小
+        # tri par tas
+        self.heapsort(self.codes)
+        # 取位数
+        c = {}
+        codes = self.codes
+        keys = list(codes.keys())
+        for i in range(len(self.codes)):
+            if i == 0:
+                c[keys[0]] = 0 * len(keys)
+            else:
+                if len(codes[keys[i]]) == len(codes[keys[i-1]]):
+                    c[keys[i]] = c[keys[i-1]] + 1
+                else:
+                    c[keys[i]] = c[keys[i-1]] + 1
+                    c[keys[i]] << 1
+        i = 0
+        l = []
+        for item in c:
+            if i % 2 == 0:
+                l.append(item)
+            else:
+                l.append(c[item])
+        return l
+
+    def build_canonical_codemap(self, l):
+        self.codes = [None] * (huffman_maker + 1)
+        for i in range(0, len(l), 2):
+            self.codes[l[i]] = l[i+1]
+        return self.codes
+    
+    # i initial 0
+    def rebuild_tree_rec(self, i):
+        l = self.canonical_diffs()
+        if i >= len(l):
+            return
+    
+        if i % 2 == 0:
+            self.tree.weight = l[i+1]
+            self.tree.symbol = l[i]
+        
+        self.tree.g.rebuild_tree_rec(i+2)
+        self.tree.d.rebuild_tree_rec(i+2)
+
+    def build_tree(self):
+        i = 0
+        self.build_tree_rec(i)
+        return self.tree
+    
+    def split_symbols(self, l):
+        for i in range(0, len(l)-1, 2):
+            if l[i] > 255:
+                l[i+1] = 0
+                l[i] = modulo
+    
+    def merge_symbols(self, l):
+        codes = {}
+        # j 记录堆最左边的indice
+        j = 1
+        codes[l[0]] = 0
+        i = 0
+        while i < len(l) - 1:
+            m = 0
+            if i // 2 == 2 * (j-1) + 1:
+
+                while (2**j >= m):
+                    codes[l[i]] = [0] + []
+                    i += 1
+            j += 1
+
+
+def binary_list(x):
+    n = len(x)
+    q0 = x
+    q1 = q0 // 2
+    res = []
+    while q1 > 0:
+        a = q0 - q1 * 2
+        res.append(a)
+    return res
+
+
 
 if __name__ == "__main__":
     file = "pg5097.txt"
