@@ -24,20 +24,9 @@ def suite_julia(max_iter, z=candidat,c=parametre)-> complex:
     if z == 0:
         raise ValueError("z ne peut pas être 0")
     return suite(z,c, max_iter)
-
-def is_in_Mandelbrot(c, max_iter = 50):
-    list = suite_mandelbrot(z = 0, c = c, max_iter = max_iter)
-    timer = 0
-    r = 2     # rayon
-    for item in list:
-        timer += 1
-        if timer >= max_iter:
-            return True
-        if abs(item) > r:
-            return False
         
 
-def is_in_Mandelbrot_new(c, max_iter = 50):
+def is_in_Mandelbrot(c, max_iter = 50):
     r = 2     # rayon
     list = suite_mandelbrot(z = 0, c = c, max_iter = max_iter)
     for item in list:
@@ -46,17 +35,6 @@ def is_in_Mandelbrot_new(c, max_iter = 50):
     return True
 
 def is_in_Julia(z, c, max_iter = 50):
-    list = suite_julia(z = z, c = c, max_iter = max_iter)
-    timer = 0
-    r = 2    # rayon
-    for item in list:
-        timer += 1
-        if timer >= max_iter:
-            return True
-        if abs(item) > 2:
-            return False
-
-def is_in_Julia_new(z, c, max_iter = 50):
     r = 2     # rayon
     list = suite_julia(z = z, c = c, max_iter = max_iter)
     for item in list:
@@ -67,14 +45,14 @@ def is_in_Julia_new(z, c, max_iter = 50):
 
 
 def plot_mandelbrot(zmin = -2-2j, zmax = 2+2j, 
-                    pixel_size = 0.001, max_iter = 50, 
+                    pixel_size = 5e-4, max_iter = 50, 
                     figname = 'Mandelbrot.png'):
-    w = int(1 / pixel_size)  # 在实部上均匀分隔的点数
-    h = int(1 / pixel_size)  # 在虚部上均匀分隔的点数
+    w = int(1 / pixel_size)  
+    h = int(1 / pixel_size) 
     bitmap = Image.new("RGB", (w, h), "white")
     pix = bitmap.load()
     
-    # 在实部和虚部上创建等间距的值
+    
     real_values = np.linspace(zmin.real, zmax.real, w)
     imag_values = np.linspace(zmin.imag, zmax.imag, h)
 
@@ -83,21 +61,21 @@ def plot_mandelbrot(zmin = -2-2j, zmax = 2+2j,
             real_value = real_values[x]
             imag_value = imag_values[y]
             c = complex(real_value, imag_value)
-            if is_in_Mandelbrot_new(c, max_iter = max_iter):
+            if is_in_Mandelbrot(c, max_iter = max_iter):
                 pix[x, y] = (0, 0, 0)
     bitmap.save(figname)
     bitmap.show()
 
 
 def plot_julia(c, zmin = -1, zmax = 1, 
-               pixel_size = None, max_iter = 50, 
+               pixel_size = 5e-4, max_iter = 50, 
                figname = "Julia.png"):
-    w = int(1 / pixel_size)  # 在实部上均匀分隔的点数
-    h = int(1 / pixel_size)  # 在虚部上均匀分隔的点数
+    w = int(1 / pixel_size)  
+    h = int(1 / pixel_size)  
     bitmap = Image.new("RGB", (w, h), "white")
     pix = bitmap.load()
 
-    # 在实部和虚部上创建等间距的值
+   
     real_values = np.linspace(zmin.real, zmax.real, w)
     imag_values = np.linspace(zmin.imag, zmax.imag, h)
     
@@ -106,7 +84,7 @@ def plot_julia(c, zmin = -1, zmax = 1,
             real_value = real_values[x]
             imag_value = imag_values[y]
             z = complex(real_value, imag_value)
-            if is_in_Julia_new(z = z, c = c, max_iter = max_iter):
+            if is_in_Julia(z = z, c = c, max_iter = max_iter):
                 pix[x, y] = (0, 0, 0)
     bitmap.save(figname)
     bitmap.show()

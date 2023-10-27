@@ -1,7 +1,7 @@
-TP_final
-========
+Mandelbrot_Julia_Plot
+=====================
 
 .. toctree::
    :maxdepth: 4
 
-   TP_final
+   Mandelbrot_Julia_Plot

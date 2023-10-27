@@ -6,9 +6,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP_final.TP &#8212; Mandelbrot_Julia_Plot 1.0 documentation</title>
+    <title>Mandelbrot_Julia_Plot.TP &#8212; Mandelbrot_Julia_Plot 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=649a27d8" />
     <link rel="stylesheet" type="text/css" href="../../_static/bizstyle.css?v=532c1bf3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pandoc.css" />
     
     <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
@@ -32,7 +33,7 @@
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Mandelbrot_Julia_Plot 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">TP_final.TP</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Mandelbrot_Julia_Plot.TP</a></li> 
       </ul>
     </div>  
 
@@ -41,7 +42,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for TP_final.TP</h1><div class="highlight"><pre>
+  <h1>Source code for Mandelbrot_Julia_Plot.TP</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -52,7 +53,7 @@
 <span class="n">parametre</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <div class="viewcode-block" id="suite">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.suite">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.suite">[docs]</a>
 <span class="k">def</span> <span class="nf">suite</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Générateur des éléments de la suite $z_{n+1}=z_n^2+c$</span>
 <span class="sd">    </span>
@@ -63,39 +64,25 @@
 
 
 <div class="viewcode-block" id="suite_mandelbrot">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.suite_mandelbrot">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.suite_mandelbrot">[docs]</a>
 <span class="k">def</span> <span class="nf">suite_mandelbrot</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">candidat</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Renvoie la suite de Mandelbrot&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">suite</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="suite_julia">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.suite_julia">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.suite_julia">[docs]</a>
 <span class="k">def</span> <span class="nf">suite_julia</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">candidat</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">parametre</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Renvoie la suite de julia pour candidat et parametre&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;z ne peut pas être 0&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">suite</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="is_in_Mandelbrot">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.is_in_Mandelbrot">[docs]</a>
-<span class="k">def</span> <span class="nf">is_in_Mandelbrot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="nb">list</span> <span class="o">=</span> <span class="n">suite_mandelbrot</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># rayon</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="n">timer</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">timer</span> <span class="o">&gt;=</span> <span class="n">max_iter</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
-
         
 
-<div class="viewcode-block" id="is_in_Mandelbrot_new">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.is_in_Mandelbrot_new">[docs]</a>
-<span class="k">def</span> <span class="nf">is_in_Mandelbrot_new</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
+<div class="viewcode-block" id="is_in_Mandelbrot">
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.is_in_Mandelbrot">[docs]</a>
+<span class="k">def</span> <span class="nf">is_in_Mandelbrot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># rayon</span>
     <span class="nb">list</span> <span class="o">=</span> <span class="n">suite_mandelbrot</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
@@ -105,22 +92,8 @@
 
 
 <div class="viewcode-block" id="is_in_Julia">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.is_in_Julia">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.is_in_Julia">[docs]</a>
 <span class="k">def</span> <span class="nf">is_in_Julia</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="nb">list</span> <span class="o">=</span> <span class="n">suite_julia</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>    <span class="c1"># rayon</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="n">timer</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">timer</span> <span class="o">&gt;=</span> <span class="n">max_iter</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
-
-
-<div class="viewcode-block" id="is_in_Julia_new">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.is_in_Julia_new">[docs]</a>
-<span class="k">def</span> <span class="nf">is_in_Julia_new</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># rayon</span>
     <span class="nb">list</span> <span class="o">=</span> <span class="n">suite_julia</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
@@ -132,16 +105,16 @@
 
 
 <div class="viewcode-block" id="plot_mandelbrot">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.plot_mandelbrot">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.plot_mandelbrot">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_mandelbrot</span><span class="p">(</span><span class="n">zmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="p">,</span> <span class="n">zmax</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="n">j</span><span class="p">,</span> 
-                    <span class="n">pixel_size</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> 
+                    <span class="n">pixel_size</span> <span class="o">=</span> <span class="mf">5e-4</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> 
                     <span class="n">figname</span> <span class="o">=</span> <span class="s1">&#39;Mandelbrot.png&#39;</span><span class="p">):</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  <span class="c1"># 在实部上均匀分隔的点数</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  <span class="c1"># 在虚部上均匀分隔的点数</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span> 
     <span class="n">bitmap</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
     <span class="n">pix</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
     
-    <span class="c1"># 在实部和虚部上创建等间距的值</span>
+    
     <span class="n">real_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">zmin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">zmax</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
     <span class="n">imag_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">zmin</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">zmax</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 
@@ -150,7 +123,7 @@
             <span class="n">real_value</span> <span class="o">=</span> <span class="n">real_values</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
             <span class="n">imag_value</span> <span class="o">=</span> <span class="n">imag_values</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
             <span class="n">c</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">real_value</span><span class="p">,</span> <span class="n">imag_value</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">is_in_Mandelbrot_new</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">is_in_Mandelbrot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">):</span>
                 <span class="n">pix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">bitmap</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">figname</span><span class="p">)</span>
     <span class="n">bitmap</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
@@ -158,16 +131,16 @@
 
 
 <div class="viewcode-block" id="plot_julia">
-<a class="viewcode-back" href="../../TP_final.html#TP_final.TP.plot_julia">[docs]</a>
+<a class="viewcode-back" href="../../Mandelbrot_Julia_Plot.html#Mandelbrot_Julia_Plot.TP.plot_julia">[docs]</a>
 <span class="k">def</span> <span class="nf">plot_julia</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">zmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">zmax</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
-               <span class="n">pixel_size</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> 
+               <span class="n">pixel_size</span> <span class="o">=</span> <span class="mf">5e-4</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> 
                <span class="n">figname</span> <span class="o">=</span> <span class="s2">&quot;Julia.png&quot;</span><span class="p">):</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  <span class="c1"># 在实部上均匀分隔的点数</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  <span class="c1"># 在虚部上均匀分隔的点数</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>  
     <span class="n">bitmap</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
     <span class="n">pix</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
-    <span class="c1"># 在实部和虚部上创建等间距的值</span>
+   
     <span class="n">real_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">zmin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">zmax</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
     <span class="n">imag_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">zmin</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">zmax</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
     
@@ -176,7 +149,7 @@
             <span class="n">real_value</span> <span class="o">=</span> <span class="n">real_values</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
             <span class="n">imag_value</span> <span class="o">=</span> <span class="n">imag_values</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
             <span class="n">z</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">real_value</span><span class="p">,</span> <span class="n">imag_value</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">is_in_Julia_new</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">is_in_Julia</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">):</span>
                 <span class="n">pix</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">bitmap</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">figname</span><span class="p">)</span>
     <span class="n">bitmap</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
@@ -232,7 +205,7 @@
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Mandelbrot_Julia_Plot 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">TP_final.TP</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Mandelbrot_Julia_Plot.TP</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

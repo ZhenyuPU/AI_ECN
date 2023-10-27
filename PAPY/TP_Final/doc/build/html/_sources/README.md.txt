@@ -1,5 +1,3 @@
-When creating a new project, it is crucial to write a clear and comprehensive README file. Here is a possible example of a README document for the Mandelbrot_Julia_Plot project:
-
 # Mandelbrot_Julia_Plot
 
 Mandelbrot_Julia_Plot is a Python project for generating Mandelbrot and Julia set images.

@@ -1,2 +1,0 @@
-[console_scripts]
-ditbonjour = TP_final.__main__:main

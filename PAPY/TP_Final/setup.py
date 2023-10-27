@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="TP_final",
+    name="Mandelbrot_Julia_Plot",
     version="1.0",
-    author="ZhenyuPU",
+    author="Zhenyu PU",
     packages=find_packages(),
 )
