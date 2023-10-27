@@ -1,80 +1,26 @@
-# Mandelbrot_Julia_Plot
+---
+title: TP_Final
+auther: Zhenyu PU
+date: 27 octobre
+numbersections: true
+highlight-style: "tango"
+papersize: a4
+header-includes:
+geometry:
+- top=30mm
+- left=20mm
+- right=20mm
+- heightrounded
+---
 
-Mandelbrot_Julia_Plot is a Python project for generating Mandelbrot and Julia set images.
+## Explication des fichiers dans un package compressé
 
-## Features
+Le dossier `Mandelbrot_Julia_Plot` est une bibliothèque de modules, qui inclut le code pour le dessin des jeux de points Mandelbrot et Julia. L'explication du code se trouve dans le fichier `.ipynb`.
 
-- Generate Mandelbrot set images.
-- Generate Julia set images.
-- Customize image details, including complex value ranges, pixel size, and maximum iteration count.
-- Support custom image generation using command-line parameters.
+Le dossier `doc`stocke les documents automatisés. Vous pouvez saisir `make html` sur la ligne de commande via `PAPY/TP_Final/doc/` pour ouvrir la page Web.
 
-## Installation
+Les fichiers `.bat` et `.sh` sont créés pour définir des alias de fonction dans les modules pour les systèmes Windows et Linux respectivement.
 
-You can easily install the Mandelbrot_Julia_Plot project using the following command:
+Le fichier `setup` est créé pour une implémentation réussie de `pip install .`.
 
-```bash
-$ cd chemin/des/sources
-$ pip install .
-```
-
-## Usage Examples
-
-If you want to use this module, you can input following command:
-
-```bash
-$ python -m Mandelbrot_Julia_Plot MandelbrotPlot -o mandelbrot.png
-```
-
-If you don't want to input `python -m Mandelbrot_Julia_Plot` every time, you can use this command:
-
-```bash
-$ source load_aliases.sh
-```
-
-Then you can easily use `MandelbrotPlot` and `MandelbrotPlot` as alias.
-
-Following are certain examples:
-
-Generate a default Mandelbrot set image:
-
-```bash
-$ MandelbrotPlot -o mandelbrot.png
-```
-
-Generate a default Julia set image:
-
-```bash
-$ JuliaPlot -c=-0.8j\
-            --pixel_size=1e-3\
-            --max-iter=50\
-            -o "thunder-julia.png" 
-```
-<center><img src="https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231027/thunder-julia.68tydezpz8w0.webp" width=300 height=300></center>
-
-Customize image generation, for example, a Mandelbrot set:
-
-```bash
-$ MandelbrotPlot --zmin=-0.7440+0.1305j\
-                --zmax=-0.7425+0.1320j \
-                --pixel_size=5e-7\
-                --max-iter=50\
-                -o "Mandelbrot_tentacle_lowiter.png"
-```
-
-<center><img src="https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231027/Mandelbrot_tentacle_lowiter.6c9q2d9u5t80.png" width=300 height=300></center>
-
-
-## Documentation
-
-Detailed project documentation can be found in the project documentation.
-
-## Issues and Feedback
-
-If you encounter any issues while using the project or need assistance, please feel free to raise an issue, and we will be happy to help.
-
-## License
-
-This project is licensed under the MIT License. For details, please refer to the License file.
-
-Thank you for choosing the Mandelbrot_Julia_Plot project! We hope it proves helpful for your work.
+Pour plus d'informations sur le document, veuillez lire le fichier `doc/source/README.rst` ou ouvrir la page Web pour l'afficher.
