@@ -5,12 +5,11 @@
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Mandelbrot_Julia_Plot &#8212; Mandelbrot_Julia_Plot 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=532c1bf3" />
-    <link rel="stylesheet" type="text/css" href="_static/pandoc.css" />
     
     <script src="_static/documentation_options.js?v=f2a433a1"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
@@ -65,24 +64,44 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>You can easily install the Mandelbrot_Julia_Plot project using the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>Mandelbrot_Julia_Plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>chemin/des/sources
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
 </section>
 <section id="usage-examples">
 <h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h2>
+<p>If you want to use this module, you can input following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>Mandelbrot_Julia_Plot<span class="w"> </span>MandelbrotPlot<span class="w"> </span>-o<span class="w"> </span>mandelbrot.png
+</pre></div>
+</div>
+<p>If you don’t want to input <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">Mandelbrot_Julia_Plot</span></code> every time, you can use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>load_aliases.sh
+</pre></div>
+</div>
+<p>Then you can easily use <code class="docutils literal notranslate"><span class="pre">MandelbrotPlot</span></code> and <code class="docutils literal notranslate"><span class="pre">MandelbrotPlot</span></code> as alias.</p>
+<p>Following are certain examples:</p>
 <p>Generate a default Mandelbrot set image:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>MandelbrotPlot<span class="w"> </span>-o<span class="w"> </span>mandelbrot.png
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>MandelbrotPlot<span class="w"> </span>-o<span class="w"> </span>mandelbrot.png
 </pre></div>
 </div>
 <p>Generate a default Julia set image:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>JuliaPlot<span class="w"> </span>-o<span class="w"> </span>julia.png
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>JuliaPlot<span class="w"> </span>-c<span class="o">=</span>-0.8j<span class="se">\</span>
+<span class="w">            </span>--pixel_size<span class="o">=</span>1e-3<span class="se">\</span>
+<span class="w">            </span>--max-iter<span class="o">=</span><span class="m">50</span><span class="se">\</span>
+<span class="w">            </span>-o<span class="w"> </span><span class="s2">&quot;thunder-julia.png&quot;</span><span class="w"> </span>
 </pre></div>
 </div>
+<center><img src="https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231027/thunder-julia.68tydezpz8w0.webp" width=300 height=300></center>
 <p>Customize image generation, for example, a Mandelbrot set:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>MandelbrotPlot<span class="w"> </span>--zmin<span class="o">=</span>-2-2j<span class="w"> </span>--zmax<span class="o">=</span><span class="m">2</span>+2j<span class="w"> </span>--pixel_size<span class="o">=</span>5e-4<span class="w"> </span>--max_iter<span class="o">=</span><span class="m">50</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;Mandelbrot_custom.png&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>MandelbrotPlot<span class="w"> </span>--zmin<span class="o">=</span>-0.7440+0.1305j<span class="se">\</span>
+<span class="w">                </span>--zmax<span class="o">=</span>-0.7425+0.1320j<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span>--pixel_size<span class="o">=</span>5e-7<span class="se">\</span>
+<span class="w">                </span>--max-iter<span class="o">=</span><span class="m">50</span><span class="se">\</span>
+<span class="w">                </span>-o<span class="w"> </span><span class="s2">&quot;Mandelbrot_tentacle_lowiter.png&quot;</span>
 </pre></div>
 </div>
+<center><img src="https://cdn.statically.io/gh/ZhenyuPU/picx-images-hosting@master/20231027/Mandelbrot_tentacle_lowiter.6c9q2d9u5t80.png" width=300 height=300></center>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>

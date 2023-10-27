@@ -5,13 +5,19 @@
 
 Welcome to Mandelbrot_Julia_Plot's documentation!
 =================================================
+.. note::
+   :class: custom
+
+   This is a documentation for Mandelbrot_Julia_Plot, which is a python project for generating Mandelbrot and Julia set images.
+   You can find details in following contents including the description of documentation and module details.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
    
    README
    Mandelbrot_Julia_Plot
+
 
 
 Indices and tables

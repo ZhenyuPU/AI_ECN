@@ -1,1 +1,1 @@
-from TP import plot_mandelbrot, plot_julia
+from .TP import plot_mandelbrot, plot_julia

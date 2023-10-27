@@ -47,7 +47,7 @@ language = 'en'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_css_files = ['pandoc.css']
+# html_css_files = ['pandoc.css']
 
 html_theme = 'bizstyle'
 # Add any paths that contain custom static files (such as style sheets) here,
