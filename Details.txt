@@ -1,0 +1,8 @@
+
+                Packet Details:
+                ---
+                Frame Number: 12582,                 Frame Length: 82,                 Capture Length: 82                Arrival Time: 2023-11-16 17:55:47.327612
+            
+                                UDP Source Port: 5353                                 UDP Destination Port: 5353
+                            
+---

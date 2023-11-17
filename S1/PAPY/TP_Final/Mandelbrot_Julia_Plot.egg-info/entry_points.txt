@@ -1,0 +1,2 @@
+[console_scripts]
+ditbonjour = Mandelbrot_Julia_Plot.__main__:main
