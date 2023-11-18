@@ -111,12 +111,6 @@ class CaptureFile:
 
         details = ''
         for packet in self.cap:
-            # print(f"Packet Details:")
-            # print(f"---")
-            # print(f"Frame Number: {packet.number}")
-            # print(f"Frame Length: {packet.length}")
-            # print(f"Capture Length: {packet.captured_length}")
-            # print(f"Arrival Time: {datetime.utcfromtimestamp(float(packet.sniff_timestamp))}")
             detail = f"""Packet Details:
 ---
 Frame Number: {packet.number}, \
@@ -128,9 +122,6 @@ Arrival Time: {datetime.utcfromtimestamp(float(packet.sniff_timestamp))}
             # 访问 Ethernet II 层信息
             if 'Ethernet' in packet:
                 eth_layer = packet.eth
-                # print(f"Ethernet Source: {eth_layer.src}")
-                # print(f"Ethernet Destination: {eth_layer.dst}")
-                # print(f"Ethernet Type: {eth_layer.type}")
                 layer_info = f"""Ethernet Source: {eth_layer.src} \
 Ethernet Destination: {eth_layer.dst} \
 Ethernet Type: {eth_layer.type}
@@ -139,8 +130,6 @@ Ethernet Type: {eth_layer.type}
             # 访问 IPv6 层信息
             if 'IPv6' in packet:
                 ipv6_layer = packet.ipv6
-                # print(f"IPv6 Source: {ipv6_layer.src}")
-                # print(f"IPv6 Destination: {ipv6_layer.dst}")
                 layer_info = f"""
 IPv6 Source: {ipv6_layer.src} \
 IPv6 Destination: {ipv6_layer.dst}
@@ -149,8 +138,6 @@ IPv6 Destination: {ipv6_layer.dst}
             # 访问 UDP 层信息
             if 'UDP' in packet:
                 udp_layer = packet.udp
-                # print(f"UDP Source Port: {udp_layer.srcport}")
-                # print(f"UDP Destination Port: {udp_layer.dstport}")
                 layer_info = f"""
 UDP Source Port: {udp_layer.srcport} \
 UDP Destination Port: {udp_layer.dstport}
@@ -274,15 +261,15 @@ if __name__ == '__main__':
     # # 时序分析：
     # cap.time_analysis()
 
-    # 流量过滤和细节分析：
-    filter_expression = '2a01:cb06:8009:64c6:61aa:69d1:5aee:d7c8'
-    cap.filter_and_detail_analysis(filter_expression)
+    # # 流量过滤和细节分析：
+    # filter_expression = '2a01:cb06:8009:64c6:61aa:69d1:5aee:d7c8'
+    # cap.filter_and_detail_analysis(filter_expression)
 
     # # 设备和用户识别：
     # cap.device_user_identification()
 
-    # # TCP 三次握手检查
-    # cap.tcp_handshake_analysis()
+    # TCP 三次握手检查
+    cap.tcp_handshake_analysis()
 
 
 
